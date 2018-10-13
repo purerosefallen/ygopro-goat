@@ -6,7 +6,7 @@ function Auxiliary.PreloadUds()
 			e:SetTarget(function(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 				if not tg then return true end
 				if chkc then return tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) end
-				if chk==0 then return tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) or not (e:GetHandler():IsType(TYPE_UNION) and e:IsHasType(EFFECT_TYPE_IGNITION)) end --union flag effect is troubling
+				if chk==0 then return tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc) or (not (e:GetHandler():IsType(TYPE_UNION) and e:IsHasType(EFFECT_TYPE_IGNITION)) and not e:IsHasProperty(EFFECT_FLAG_CARD_TARGET)) end --union flag effect is troubling
 				return tg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 			end)
 			if e:IsHasType(EFFECT_TYPE_IGNITION) and not e:IsHasType(EFFECT_TYPE_XMATERIAL) and (e:GetRange()&LOCATION_MZONE)==LOCATION_MZONE then
